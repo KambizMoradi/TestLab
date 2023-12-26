@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  nexus:
+    image: sonatype/nexus3
+    container_name: nexus.local
+    hostname: nexus-server
+    network_mode: "bridge"
+    volumes:
+      - "nexus-data:/nexus-data"
+    ports:
+      - "8081:8081"
+      - "8082:8082"
+volumes:
+  nexus-data:
+
