@@ -1,0 +1,10 @@
+deb http://nexus.local:8081/repository/apt-proxy/ jammy main restricted
+deb http://nexus.local:8081/repository/apt-proxy/ jammy-updates main restricted
+deb http://nexus.local:8081/repository/apt-proxy/ jammy universe
+deb http://nexus.local:8081/repository/apt-proxy/ jammy-updates universe
+deb http://nexus.local:8081/repository/apt-proxy/ jammy multiverse
+deb http://nexus.local:8081/repository/apt-proxy/ jammy-updates multiverse
+deb http://nexus.local:8081/repository/apt-proxy/ jammy-backports main restricted universe multiverse
+deb http://nexus.local:8081/repository/apt-proxy/ jammy-security main restricted
+deb http://nexus.local:8081/repository/apt-proxy/ jammy-security universe
+deb http://nexus.local:8081/repository/apt-proxy/ jammy-security multiverse
