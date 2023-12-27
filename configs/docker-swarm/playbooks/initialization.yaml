@@ -1,0 +1,51 @@
+---
+- name: initialize virtual machines
+  hosts: all
+  become: True
+  tasks:
+    - name: Set a hostname
+      ansible.builtin.hostname:
+        name: "{{ inventory_hostname }}"
+        use: systemd
+
+    - name: remove `optional` network setting to fast boot up vms
+      ansible.builtin.lineinfile:
+        path: /etc/netplan/01-netcfg.yaml
+        state: absent
+        regexp: 'optional'
+
+    - name: Apply netplan
+      ansible.builtin.command: sudo netplan apply
+
+    - name: Ensure nexus.local exist in /etc/hosts
+      ansible.builtin.lineinfile:
+        path: /etc/hosts
+        line: '192.168.3.2 nexus.local'
+        state: present
+        regexp: '^192.168.3.2 nexus.local$'
+
+    - name: Change source.list to use nexus.local
+      ansible.builtin.copy:
+        src: ../../package-managers/ubuntu/jammy/etc/apt/sources.list
+        dest: /etc/apt/sources.list
+
+    - name: apt clean
+      ansible.builtin.apt:
+        clean: yes
+    - name: apt autoclean
+      ansible.builtin.apt:
+        autoclean: yes
+    - name: apt autoremove
+      ansible.builtin.apt:
+        autoremove: yes
+        purge: true
+
+    - name: remove apt cache files
+      ansible.builtin.command: rm -rf /var/lib/apt/lists/* /var/cache/apt/*
+
+    - name: apt update and upgrade
+      ansible.builtin.apt:
+        upgrade: yes
+        update_cache: yes
+        cache_valid_time: 3600 # one hour
+...
