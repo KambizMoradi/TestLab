@@ -1,5 +1,8 @@
-# temporary files for ansible by docker project
+# temporary files for test/ansible-by-docker
 test/ansible-by-docker/docker-compose.yaml
 test/ansible-by-docker/src/authorized_keys
 test/ansible-by-docker/src/sources.list
 test/ansible-by-docker/working/
+
+# temporary files for config/dockerswarm
+configs/docker-swarm/hosts
