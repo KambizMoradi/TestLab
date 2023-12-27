@@ -1,3 +1,4 @@
+number_of_vms=ENV['vms_number'].to_i
 Vagrant.configure("2") do |config|
   config.vm.box = "generic/ubuntu2204"
 
@@ -7,7 +8,7 @@ Vagrant.configure("2") do |config|
     vb.cpus = 1
   end
 
-  (1..4).each do |i|
+  (1..number_of_vms).each do |i|
     config.vm.define "vm-#{i}" do |node|
     end
   end

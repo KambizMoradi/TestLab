@@ -7,6 +7,9 @@ This tool helps you to prepare a test cluster environment by using [Vagrant](htt
 
 ## How To Use
 ```bash
+# assume you need 3 virtual machines
+export vms_number=3
+
 # create and start virtual machines
 vagrant up
 
