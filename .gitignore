@@ -1,2 +1,5 @@
+# temporary files for ansible by docker project
+test/ansible-by-docker/docker-compose.yaml
 test/ansible-by-docker/src/authorized_keys
 test/ansible-by-docker/src/sources.list
+test/ansible-by-docker/working/

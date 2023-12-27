@@ -1,0 +1,7 @@
+  $CONTAINER_HOSTNAME:
+    image: ubuntu-worker
+    hostname: $CONTAINER_HOSTNAME
+    container_name: $CONTAINER_HOSTNAME
+    stdin_open: true
+    tty: true
+

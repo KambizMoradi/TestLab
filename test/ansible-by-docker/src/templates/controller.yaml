@@ -1,0 +1,12 @@
+name: "test_lab"
+services:
+  controller:
+    image: ubuntu-controller
+    hostname: controller
+    container_name: controller
+    stdin_open: true
+    tty: true
+    working_dir: /root/working
+    volumes:
+    - ./working:/root/working
+

@@ -12,7 +12,7 @@ RUN apt install -y openssh-server && \
 
 RUN echo 'PermitRootLogin=yes' >> /etc/ssh/sshd_config
 
-# COPY --chmod=600 ./authorized_keys /root/.ssh/authorized_keys
+COPY --chmod=600 ./authorized_keys /root/.ssh/authorized_keys
 
 EXPOSE 22
 
