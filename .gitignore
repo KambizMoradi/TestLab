@@ -1,3 +1,5 @@
+# .vagrant files not needed to be tracked
+**/.vagrant
 # temporary files for test/ansible-by-docker
 test/ansible-by-docker/docker-compose.yaml
 test/ansible-by-docker/src/authorized_keys
