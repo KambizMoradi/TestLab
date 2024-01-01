@@ -4,7 +4,7 @@ function write_in_hosts_file() {
 	do
 		private_ip=$(vagrant ssh $vm -c "hostname -I" | cut --delimiter=" " --field=1)
 		ssh_private_key=$(vagrant ssh-config $vm | grep "^  IdentityFile" | sed "s/  IdentityFile //g")
-		echo $vm ansible_host=$private_ip
+		echo $vm $private_ip
 		echo $vm ansible_host=$private_ip ansible_ssh_private_key_file=$ssh_private_key >> $2
 	done
 	echo "" >> $2
@@ -13,7 +13,7 @@ function write_in_hosts_file() {
 source ./vars.sh
 
 vagrant up
-
+echo "============================================="
 
 header=$(cat <<EOF
 [all:vars]
@@ -38,3 +38,4 @@ echo hosts file successfully generated and stored in $target_directory
 ansible-playbook playbooks/initialization.yaml
 echo "============================================="
 echo ansible initialization completed
+echo "============================================="

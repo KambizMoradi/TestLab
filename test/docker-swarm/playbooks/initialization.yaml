@@ -49,6 +49,25 @@
         update_cache: yes
         cache_valid_time: 3600 # one hour
 
+    - name: install docker.io
+      ansible.builtin.apt:
+        name : docker.io
+        state: latest
+
+    - name: add vagrant user to docker group
+      ansible.builtin.user:
+        name: vagrant
+        groups: docker
+        append: yes
+
+    - name: add nexus.local:8082 to docker insecure repo lists
+      copy:
+        dest: "/etc/docker/daemon.json"
+        content: |
+              {
+                "insecure-registries": ["http://nexus.local:8082"]
+              }
+
     - name: reboot the machines
       ansible.builtin.reboot:
 ...
