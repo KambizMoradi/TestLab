@@ -9,3 +9,11 @@ This tool helps you to config a test cluster by using [Ansible](https://www.ansi
         3. ssh\_private\_key address
 - [Ansible](https://www.ansible.com)
 
+## How To Use
+```bash
+# initiate vms
+./vm-initiate.sh
+
+# remove vms
+./vm-destroy.sh
+```

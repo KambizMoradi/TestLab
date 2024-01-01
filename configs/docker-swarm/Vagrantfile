@@ -1,0 +1,22 @@
+manager_numbers=ENV['manager_numbers'].to_i
+worker_numbers=ENV['worker_numbers'].to_i
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "generic/ubuntu2204"
+
+  config.vm.provider "libvirt" do |vb|
+    vb.default_prefix = ""
+    vb.memory = "1024"
+    vb.cpus = 1
+  end
+
+  (1..manager_numbers).each do |i|
+    config.vm.define "manager-#{i}" do |node|
+    end
+  end
+
+  (1..worker_numbers).each do |i|
+    config.vm.define "worker-#{i}" do |node|
+    end
+  end
+end
