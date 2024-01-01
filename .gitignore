@@ -7,4 +7,4 @@ test/ansible-by-docker/src/sources.list
 test/ansible-by-docker/working/
 
 # temporary files for config/dockerswarm
-configs/docker-swarm/hosts
+test/docker-swarm/hosts
