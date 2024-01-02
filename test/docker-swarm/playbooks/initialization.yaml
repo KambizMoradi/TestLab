@@ -54,6 +54,11 @@
         name : docker.io
         state: latest
 
+    - name: install python3-docker
+      ansible.builtin.apt:
+        name : python3-docker
+        state: latest
+
     - name: add vagrant user to docker group
       ansible.builtin.user:
         name: vagrant

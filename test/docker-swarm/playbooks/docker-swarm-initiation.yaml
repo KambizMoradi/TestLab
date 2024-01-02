@@ -1,0 +1,43 @@
+---
+- name: start docker swarm
+  hosts: manager-1
+  tasks:
+    - name: Init a new swarm with default parameters
+      community.docker.docker_swarm:
+        state: present
+
+    - name: get manger join token
+      ansible.builtin.command: docker swarm join-token manager
+      register: manager_token
+
+    - name: get worker join token
+      ansible.builtin.command: docker swarm join-token worker
+      register: worker_join
+
+- name: managers join
+  hosts: managers,!manager-1
+  vars:
+    join_command: "{{ hostvars['manager-1'].manager_token.stdout_lines[2] }}"
+    join_token: "{{ join_command.split(' ')[-2] }}"
+    remote_addrs: "{{ join_command.split(' ')[-1] }}"
+  tasks:
+    - name: Add nodes
+      community.docker.docker_swarm:
+        state: join
+        join_token: "{{ join_token }}"
+        remote_addrs: [ "{{ remote_addrs }}" ]
+
+- name: workers join
+  hosts: workers
+  vars:
+    join_command: "{{ hostvars['manager-1'].worker_join.stdout_lines[2] }}"
+    join_token: "{{ join_command.split(' ')[-2] }}"
+    remote_addrs: "{{ join_command.split(' ')[-1] }}"
+  tasks:
+    - name: Add nodes
+      community.docker.docker_swarm:
+        state: join
+        join_token: "{{ join_token }}"
+        remote_addrs: [ "{{ remote_addrs }}" ]
+
+...
