@@ -36,6 +36,7 @@ echo "============================================="
 echo hosts file successfully generated and stored in $target_directory
 
 ansible-playbook playbooks/initialization.yaml
+ansible-playbook playbooks/docker-swarm-initiation.yaml
 echo "============================================="
 echo ansible initialization completed
 echo "============================================="
